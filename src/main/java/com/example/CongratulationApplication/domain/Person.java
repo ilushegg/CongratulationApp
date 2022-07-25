@@ -1,8 +1,10 @@
 package com.example.CongratulationApplication.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Person {
@@ -12,7 +14,8 @@ public class Person {
 
     private String name;
 
-    private Date dateOfBirthday;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthday;
 
     private String filename;
 
@@ -21,13 +24,13 @@ public class Person {
     private User user;
 
     public Person(){
-        
+
     }
 
-    public Person(Long id, String name, Date dateOfBirthday, String filename, User user) {
+    public Person(Long id, String name, LocalDate birthday, String filename, User user) {
         this.id = id;
         this.name = name;
-        this.dateOfBirthday = dateOfBirthday;
+        this.birthday = birthday;
         this.filename = filename;
         this.user = user;
     }
@@ -48,12 +51,12 @@ public class Person {
         this.name = name;
     }
 
-    public Date getDateOfBirthday() {
-        return dateOfBirthday;
+    public LocalDate getDateOfBirthday() {
+        return birthday;
     }
 
-    public void setDateOfBirthday(Date dateOfBirthday) {
-        this.dateOfBirthday = dateOfBirthday;
+    public void setDateOfBirthday(LocalDate dateOfBirthday) {
+        this.birthday = dateOfBirthday;
     }
 
     public String getFilename() {
