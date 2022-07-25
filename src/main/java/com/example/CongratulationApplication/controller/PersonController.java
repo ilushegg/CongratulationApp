@@ -34,7 +34,6 @@ public class PersonController {
     public String addPerson(Person person, @RequestParam MultipartFile file, @RequestParam String birthday) throws IOException {
         DateTimeFormatter dateTimeFormat = DateTimeFormatter.ISO_LOCAL_DATE;
 
-
         LocalDate date = dateTimeFormat.parse(birthday, LocalDate::from);
 
         personService.addPerson(person, file, date);
