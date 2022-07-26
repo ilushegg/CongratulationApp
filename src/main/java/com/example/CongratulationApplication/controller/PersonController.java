@@ -1,6 +1,7 @@
 package com.example.CongratulationApplication.controller;
 
 import com.example.CongratulationApplication.domain.Person;
+import com.example.CongratulationApplication.repos.PersonRepo;
 import com.example.CongratulationApplication.service.PersonService;
 import com.example.CongratulationApplication.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -20,13 +21,15 @@ import java.time.format.DateTimeFormatterBuilder;
 @Controller
 public class PersonController {
     private final PersonService personService;
+    private final PersonRepo personRepo;
 
-    public PersonController(PersonService personService){
+    public PersonController(PersonService personService, PersonRepo personRepo){
+        this.personRepo = personRepo;
         this.personService = personService;
     }
 
     @GetMapping("/add")
-    public String persons(Model model){
+    public String addForm(Model model){
         return "add";
     }
 
@@ -37,6 +40,12 @@ public class PersonController {
         LocalDate date = dateTimeFormat.parse(birthday, LocalDate::from);
 
         personService.addPerson(person, file, date);
+        return "redirect:/persons";
+    }
+
+    @GetMapping("/persons")
+    public String persons(Model model){
+        model.addAttribute("persons", personRepo.findAll());
         return "persons";
     }
 }
