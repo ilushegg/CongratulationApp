@@ -47,3 +47,23 @@ header{
     cursor: pointer;
     color: #FFF;
 }
+
+.table{
+    max-width: 900px;
+    width: 100%;
+    margin: auto;
+}
+
+table td{
+    padding: 12px 16px;
+    margin: auto auto;
+    text-align: center;
+}
+
+.avatar{
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+

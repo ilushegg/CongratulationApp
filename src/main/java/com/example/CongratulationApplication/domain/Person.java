@@ -51,12 +51,12 @@ public class Person {
         this.name = name;
     }
 
-    public LocalDate getDateOfBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setDateOfBirthday(LocalDate dateOfBirthday) {
-        this.birthday = dateOfBirthday;
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 
     public String getFilename() {

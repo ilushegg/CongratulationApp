@@ -1,6 +1,7 @@
 package com.example.CongratulationApplication.service;
 
 import com.example.CongratulationApplication.domain.Person;
+import com.example.CongratulationApplication.domain.User;
 import com.example.CongratulationApplication.repos.PersonRepo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class PersonService {
         this.personRepo = personRepo;
     }
 
-    public boolean addPerson(Person person, MultipartFile file, LocalDate birthday) throws IOException {
+    public boolean addPerson(Person person, MultipartFile file, LocalDate birthday, User user) throws IOException {
         if (file != null && !file.getOriginalFilename().isEmpty()){
             File uploadDir = new File(uploadPath);
             if(!uploadDir.exists()){
@@ -35,7 +36,8 @@ public class PersonService {
             person.setFilename(resultFilename);
 
         }
-        person.setDateOfBirthday(birthday);
+        person.setBirthday(birthday);
+        person.setUser(user);
         personRepo.save(person);
 
         return true;

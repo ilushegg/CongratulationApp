@@ -9,7 +9,7 @@
         <a href="/persons">Persons</a>
       </li>
       <li class="navbar_item">
-        <a href="#">Add</a>
+        <a href="/add">Add</a>
       </li>
       <li class="navbar_item">
         <a href="#">Profile</a>

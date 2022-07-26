@@ -1,9 +1,11 @@
 package com.example.CongratulationApplication.controller;
 
 import com.example.CongratulationApplication.domain.Person;
+import com.example.CongratulationApplication.domain.User;
 import com.example.CongratulationApplication.repos.PersonRepo;
 import com.example.CongratulationApplication.service.PersonService;
-import com.example.CongratulationApplication.service.UserService;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,12 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.annotation.MultipartConfig;
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
+import java.util.List;
+
+
 
 @Controller
 public class PersonController {
@@ -34,12 +36,12 @@ public class PersonController {
     }
 
     @PostMapping("/add")
-    public String addPerson(Person person, @RequestParam MultipartFile file, @RequestParam String birthday) throws IOException {
+    public String addPerson(Person person, @RequestParam MultipartFile file, @RequestParam String birthday, @AuthenticationPrincipal User user) throws IOException {
         DateTimeFormatter dateTimeFormat = DateTimeFormatter.ISO_LOCAL_DATE;
 
         LocalDate date = dateTimeFormat.parse(birthday, LocalDate::from);
 
-        personService.addPerson(person, file, date);
+        personService.addPerson(person, file, date, user);
         return "redirect:/persons";
     }
 
