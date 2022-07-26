@@ -25,18 +25,18 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping("/persons")
+    @GetMapping("/add")
     public String persons(Model model){
-        return "persons";
+        return "add";
     }
 
-    @PostMapping("/persons")
+    @PostMapping("/add")
     public String addPerson(Person person, @RequestParam MultipartFile file, @RequestParam String birthday) throws IOException {
         DateTimeFormatter dateTimeFormat = DateTimeFormatter.ISO_LOCAL_DATE;
 
         LocalDate date = dateTimeFormat.parse(birthday, LocalDate::from);
 
         personService.addPerson(person, file, date);
-        return "";
+        return "persons";
     }
 }

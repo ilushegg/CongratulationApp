@@ -3,13 +3,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
     <title>Congratulation Application</title>
-    <meta name="viewport" content="width=device-width", initial-scale=1, shrink-to-fit=no" />
-   </head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
 <body>
-
+<header>
+    <#include "navbar.ftlh">
+</header>
 <div class="container mt-5">
 
-<#nested>
+    <#nested>
 </div>
 </body>
 </html>

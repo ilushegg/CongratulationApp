@@ -1,0 +1,49 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.container{
+    max-width: 1060px;
+    margin: auto;
+    font-family: 'Lucida Sans Unicode';
+    list-style: none;
+}
+
+header{
+    padding: 0;
+    margin: 0;
+    background: #1E1E24;
+    color: #fff;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.navbar_section{
+    display: flex;
+    align-items: center;
+}
+
+.navbar_item{
+    padding: 10px 15px;
+    font-size: 12px;
+    line-height: 30px;
+    transition: .3s;
+    list-style: none;
+}
+
+.navbar_item a{
+    color: #F7EBE8;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.navbar_item:hover{
+    background-color: #444140;
+    cursor: pointer;
+    color: #FFF;
+}
