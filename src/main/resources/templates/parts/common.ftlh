@@ -1,4 +1,5 @@
 <#macro page>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
@@ -14,6 +15,7 @@
 
     <#nested>
 </div>
+<#include "logout.ftlh">
 </body>
 </html>
 </#macro>

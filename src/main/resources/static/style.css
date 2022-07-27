@@ -67,3 +67,11 @@ table td{
     border-radius: 50%;
 }
 
+.persons{
+    margin-top: 50px;
+}
+
+#logout{
+    visibility: hidden;
+}
+

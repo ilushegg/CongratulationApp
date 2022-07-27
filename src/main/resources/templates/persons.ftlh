@@ -1,5 +1,7 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-    <#include "parts/persons.ftlh">
+    <div class="persons">
+        <#include "parts/persons.ftlh">
+    </div>
 </@c.page>

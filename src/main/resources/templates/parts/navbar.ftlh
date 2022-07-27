@@ -1,4 +1,4 @@
-
+<#include "values.ftlh">
 <div class="container">
   <div class="navbar">
     <ul class="navbar_section">
@@ -17,10 +17,18 @@
     </ul>
     <ul class="navbar_section">
       <li class="navbar_item">
-        <a href="#">Settings</a>
+      <#if user??>
+          <a href="#">Settings</a>
+      <#else>
+          <a href="/registration">Sign Up</a>
+      </#if>
       </li>
       <li class="navbar_item">
-        <a href="#">Log Out</a>
+      <#if user??>
+        <a href="#" onclick="document.getElementById('logout').submit(); return false;">Sign Out</a>
+      <#else>
+        <a href="/login">Sign In</a>
+      </#if>
       </li>
     </ul>
   </div>
