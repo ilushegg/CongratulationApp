@@ -36,12 +36,12 @@ public class PersonController {
     }
 
     @PostMapping("/add")
-    public String addPerson(Person person, @RequestParam MultipartFile file, @RequestParam String birthday, @AuthenticationPrincipal User user) throws IOException {
+    public String addPerson(@RequestParam String name, @RequestParam MultipartFile file, @RequestParam String birthday, @AuthenticationPrincipal User user) throws IOException {
         DateTimeFormatter dateTimeFormat = DateTimeFormatter.ISO_LOCAL_DATE;
 
         LocalDate date = dateTimeFormat.parse(birthday, LocalDate::from);
 
-        personService.addPerson(person, file, date, user);
+        personService.addPerson(name, file, date, user);
         return "redirect:/persons";
     }
 

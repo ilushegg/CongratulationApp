@@ -24,7 +24,9 @@ public class PersonService {
         this.personRepo = personRepo;
     }
 
-    public boolean addPerson(Person person, MultipartFile file, LocalDate birthday, User user) throws IOException {
+    public boolean addPerson(String name, MultipartFile file, LocalDate birthday, User user) throws IOException {
+        Person person = new Person();
+        person.setName(name);
         if (file != null && !file.getOriginalFilename().isEmpty()){
             File uploadDir = new File(uploadPath);
             if(!uploadDir.exists()){
