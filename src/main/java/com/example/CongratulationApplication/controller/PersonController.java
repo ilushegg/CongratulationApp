@@ -1,10 +1,8 @@
 package com.example.CongratulationApplication.controller;
 
-import com.example.CongratulationApplication.domain.Person;
 import com.example.CongratulationApplication.domain.User;
 import com.example.CongratulationApplication.repos.PersonRepo;
 import com.example.CongratulationApplication.service.PersonService;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 
 

@@ -1,26 +1,37 @@
 package com.example.CongratulationApplication.service;
 
+import com.example.CongratulationApplication.domain.Person;
 import com.example.CongratulationApplication.domain.User;
+import com.example.CongratulationApplication.repos.PersonRepo;
 import com.example.CongratulationApplication.repos.UserRepo;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 public class UserService implements UserDetailsService {
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
     private final MailService mailService;
+    private final PersonRepo personRepo;
 
-    public UserService(UserRepo userRepo, PasswordEncoder passwordEncoder, MailService mailService){
+    public Map<User, Map<Boolean, String>> map = new HashMap<>();
+
+    public UserService(UserRepo userRepo, PasswordEncoder passwordEncoder, @Lazy MailService mailService, PersonRepo personRepo){
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
         this.mailService = mailService;
+        this.personRepo = personRepo;
+        birthdayPersons();
     }
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -63,5 +74,21 @@ public class UserService implements UserDetailsService {
         user.setActivationCode(null);
         userRepo.save(user);
         return true;
+    }
+
+    public void birthdayPersons(){
+        List<User> users = userRepo.findAll();
+        for(User user : users){
+            List<Person> persons = personRepo.findAllByUser((User)user);
+            String birthdayPersons = "";
+            for(Person person : persons){
+                if(person.getBirthday().getDayOfYear() == LocalDate.now().getDayOfYear()) {
+                    birthdayPersons += person.getName() + "\n";
+                }
+            }
+            Map<Boolean, String> temp = new HashMap<>();
+            temp.put(true, birthdayPersons);
+            map.put(user, temp);
+        }
     }
 }
