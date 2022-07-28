@@ -66,5 +66,9 @@ public class PersonController {
         return "redirect:/persons";
     }
 
-
+    @GetMapping("/persons/delete/{person}")
+    public String deletePerson(@PathVariable Person person, Model model){
+        personRepo.delete(person);
+        return "redirect:/persons";
+    }
 }
