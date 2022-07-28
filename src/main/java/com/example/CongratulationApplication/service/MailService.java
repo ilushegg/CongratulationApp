@@ -57,7 +57,7 @@ public class MailService {
                 persons = tempEntry.getValue();
                 sent = tempEntry.getKey();
             }
-            if(!entry.getValue().isEmpty() && sent){
+            if(!persons.isEmpty() && sent){
                 String message = String.format(
                         "Hi, %s. Do not forget! \n" +
                                 "It's your friends' birthday today: \n" +
