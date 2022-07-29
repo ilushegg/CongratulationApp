@@ -6,6 +6,7 @@
     <title>Congratulation Application</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/style.css">
+
 </head>
 <body>
 <header>

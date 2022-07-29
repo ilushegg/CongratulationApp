@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 @Service
@@ -90,5 +91,11 @@ public class UserService implements UserDetailsService {
             temp.put(true, birthdayPersons);
             map.put(user, temp);
         }
+    }
+
+    public void userSettings(User user, LocalTime time, Boolean allow){
+        user.setSendingTime(time);
+        user.setAllowSend(allow);
+        userRepo.save(user);
     }
 }

@@ -100,3 +100,15 @@ table td{
     color: white;
 }
 
+.form{
+    max-width: 500px;
+    max-height 500px;
+    width: 100%;
+    margin: auto;
+    align-items: center;
+}
+
+.mt{
+    margin-top: 50px;
+}
+

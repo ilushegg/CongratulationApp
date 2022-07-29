@@ -18,7 +18,7 @@
     <ul class="navbar_section">
       <li class="navbar_item">
       <#if user??>
-          <a href="#">Settings</a>
+          <a href="/user/settings">Settings</a>
       <#else>
           <a href="/registration">Sign Up</a>
       </#if>

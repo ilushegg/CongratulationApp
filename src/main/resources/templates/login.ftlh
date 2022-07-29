@@ -5,16 +5,17 @@
             ${message}
         </#if>
     </div>
-    <form action="/login" method="post">
-        <div class="">
-            <label>Email: </label>
-            <input type="email" name="email" />
-            <label>Password: </label>
-            <input type="password" name="password" />
-            <input type="hidden" name="_csrf" value="${_csrf.token}" />
-            <input type="submit" value="Sign In"/>
+    <form class="form mt" action="/login" method="post">
+        <div class="mb-3">
+            <label class="form-label">Email: </label>
+            <input class="form-control" type="email" name="email" />
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
+        <div class="mb-3">
+            <label class="form-label">Password: </label>
+            <input class="form-control" type="password" name="password" />
+        </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}" />
+            <input class="button" type="submit" value="Sign In"/>
     </form>
-
-    <#include "parts/logout.ftlh">
 </@c.page>

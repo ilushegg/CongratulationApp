@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalTime;
 import java.util.Collection;
 
 @Entity
@@ -25,6 +26,10 @@ public class User implements UserDetails {
     private String username;
 
     private String avatar;
+
+    private LocalTime sendingTime;
+
+    private Boolean allowSend;
 
     public User(){
 
@@ -111,5 +116,22 @@ public class User implements UserDetails {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public LocalTime getSendingTime() {
+        return sendingTime;
+    }
+
+    public void setSendingTime(LocalTime sendingTime) {
+        this.sendingTime = sendingTime;
+    }
+
+
+    public Boolean getAllowSend() {
+        return allowSend;
+    }
+
+    public void setAllowSend(Boolean allowSend) {
+        this.allowSend = allowSend;
     }
 }
