@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 @Service
@@ -57,7 +58,8 @@ public class MailService {
                 persons = tempEntry.getValue();
                 sent = tempEntry.getKey();
             }
-            if(!persons.isEmpty() && sent){
+
+            if(!persons.isEmpty() && sent && entry.getKey().getAllowSend() && LocalTime.now().getHour() == entry.getKey().getSendingTime().getHour() && LocalTime.now().getMinute() == entry.getKey().getSendingTime().getMinute()){
                 String message = String.format(
                         "Hi, %s. Do not forget! \n" +
                                 "It's your friends' birthday today: \n" +

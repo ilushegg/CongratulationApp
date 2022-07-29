@@ -36,7 +36,6 @@ public class UserController {
             @RequestParam("allowSend") String allowSend,
             Model model)
     {
-        System.out.println(allowSend);
         Boolean answer;
         if(allowSend.equals("false")) {
             answer = false;
@@ -44,8 +43,8 @@ public class UserController {
         else{
             answer = true;
         }
-        System.out.println(answer);
         userService.userSettings(user, sendingTime, answer);
+        userService.birthdayPersons();
         return "redirect:/user/settings";
     }
 
