@@ -75,3 +75,28 @@ table td{
     visibility: hidden;
 }
 
+.button{
+    display: inline-block;
+    width: 100px;
+    height: 25px;
+    line-height: 25px;
+    border-radius: 25px;
+    margin: 7px 15px;
+    border: none;
+    font-size: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 2px;
+    font-weight: 500;
+    color: #524f4e;
+    background: #fff;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+    transition: .3s;
+    text-decoration: none;
+}
+
+.button:hover{
+    background: #FFA987;
+    color: white;
+}
+

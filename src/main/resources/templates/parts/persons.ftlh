@@ -13,10 +13,10 @@
             ${(person.birthday).getMonth()} ${(person.birthday).getDayOfMonth()}, ${(person.birthday).getYear()}
           </td>
           <td>
-             <a href="/persons/edit/${person.id}">Edit</a>
+             <a class="button" href="/persons/edit/${person.id}">Edit</a>
           </td>
           <td>
-             <a href="/persons/delete/${person.id}">Delete</a>
+             <a class="button" href="/persons/delete/${person.id}">Delete</a>
           </td>
         </tr>
     </#list>

@@ -82,7 +82,7 @@ public class UserService implements UserDetailsService {
             List<Person> persons = personRepo.findAllByUser((User)user);
             String birthdayPersons = "";
             for(Person person : persons){
-                if(person.getBirthday().getDayOfYear() == LocalDate.now().getDayOfYear()) {
+                if(person.getBirthday().getDayOfMonth() == LocalDate.now().getDayOfMonth() && person.getBirthday().getMonth() == LocalDate.now().getMonth()) {
                     birthdayPersons += person.getName() + "\n";
                 }
             }

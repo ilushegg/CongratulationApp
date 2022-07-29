@@ -20,9 +20,11 @@ public class PersonService {
     private String uploadPath;
 
     private final PersonRepo personRepo;
+    private final UserService userService;
 
-    public PersonService(PersonRepo personRepo){
+    public PersonService(PersonRepo personRepo, UserService userService){
         this.personRepo = personRepo;
+        this.userService = userService;
     }
 
     public boolean addPerson(String name, MultipartFile file, LocalDate birthday, User user) throws IOException {
@@ -32,14 +34,25 @@ public class PersonService {
         person.setBirthday(birthday);
         person.setUser(user);
         personRepo.save(person);
+        checkUpdate(person);
         return true;
     }
 
     public boolean editPerson(Person person, String name, MultipartFile file, LocalDate date) throws IOException {
-        person.setName(name);
-        person.setBirthday(date);
-        saveFile(file, person);
-        personRepo.save(person);
+        Person personBefore = person;
+        if(personBefore.getBirthday() != date || personBefore.getName() != name){
+            person.setName(name);
+            person.setBirthday(date);
+            saveFile(file, person);
+            personRepo.save(person);
+            checkUpdate(person);
+        }
+        else{
+            person.setName(name);
+            person.setBirthday(date);
+            saveFile(file, person);
+            personRepo.save(person);
+        }
         return true;
     }
 
@@ -54,6 +67,12 @@ public class PersonService {
             file.transferTo(new File(uploadPath + "/" + resultFilename));
             person.setFilename(resultFilename);
 
+        }
+    }
+
+    public void checkUpdate(Person person){
+        if(person.getBirthday().getDayOfMonth() == LocalDate.now().getDayOfMonth() && person.getBirthday().getMonth() == LocalDate.now().getMonth()){
+            userService.birthdayPersons();
         }
     }
 }
