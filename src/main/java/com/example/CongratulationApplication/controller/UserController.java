@@ -44,7 +44,7 @@ public class UserController {
             answer = true;
         }
         userService.userSettings(user, sendingTime, answer);
-        userService.birthdayPersons();
+        userService.birthdayPersonsString();
         return "redirect:/user/settings";
     }
 

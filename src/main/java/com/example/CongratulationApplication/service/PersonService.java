@@ -72,7 +72,7 @@ public class PersonService {
 
     public void checkUpdate(Person person){
         if(person.getBirthday().getDayOfMonth() == LocalDate.now().getDayOfMonth() && person.getBirthday().getMonth() == LocalDate.now().getMonth()){
-            userService.birthdayPersons();
+            userService.birthdayPersonsString();
         }
     }
 }

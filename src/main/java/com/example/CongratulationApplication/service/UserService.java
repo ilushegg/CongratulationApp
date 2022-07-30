@@ -33,7 +33,7 @@ public class UserService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
         this.mailService = mailService;
         this.personRepo = personRepo;
-        birthdayPersons();
+        birthdayPersonsString();
     }
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -78,20 +78,29 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public void birthdayPersons(){
+    public void birthdayPersonsString(){
         List<User> users = userRepo.findAll();
         for(User user : users){
-            List<Person> persons = personRepo.findAllByUser((User)user);
-            String birthdayPersons = "";
-            for(Person person : persons){
-                if(person.getBirthday().getDayOfMonth() == LocalDate.now().getDayOfMonth() && person.getBirthday().getMonth() == LocalDate.now().getMonth()) {
-                    birthdayPersons += person.getName() + "\n";
-                }
+            List<Person> birthdayPersons = getBirthdayPersons((User) user);
+            String birthdayPersonsStr = "";
+            for(Person person : birthdayPersons){
+                birthdayPersonsStr += person.getName();
             }
             Map<Boolean, String> temp = new HashMap<>();
-            temp.put(true, birthdayPersons);
+            temp.put(true, birthdayPersonsStr);
             map.put(user, temp);
         }
+    }
+
+    public List<Person> getBirthdayPersons(User user) {
+        List<Person> persons = personRepo.findAllByUser(user);
+        List<Person> birthdayPersons = new ArrayList<>();
+        for(Person person : persons){
+            if(person.getBirthday().getDayOfMonth() == LocalDate.now().getDayOfMonth() && person.getBirthday().getMonth() == LocalDate.now().getMonth()) {
+                birthdayPersons.add(person);
+            }
+        }
+        return birthdayPersons;
     }
 
     public void userSettings(User user, LocalTime time, Boolean allow){
