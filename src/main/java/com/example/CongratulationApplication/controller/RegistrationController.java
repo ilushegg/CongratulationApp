@@ -19,7 +19,7 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registrationPage(Model model){
-        return "registration";
+        return "login";
     }
 
     @PostMapping("/registration")

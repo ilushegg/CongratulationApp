@@ -1,4 +1,4 @@
-
+<div class="container mt-5">
 <table class="table">
   <tbody>
     <#list persons as person>
@@ -22,3 +22,4 @@
     </#list>
   </tbody>
 </table>
+</div>

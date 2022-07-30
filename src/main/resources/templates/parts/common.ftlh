@@ -6,16 +6,16 @@
     <title>Congratulation Application</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/style.css">
-
+    <script src="/static/script.js" defer></script>
 </head>
 <body>
 <header>
     <#include "navbar.ftlh">
 </header>
-<div class="container mt-5">
+
 
     <#nested>
-</div>
+
 <#include "logout.ftlh">
 </body>
 </html>
