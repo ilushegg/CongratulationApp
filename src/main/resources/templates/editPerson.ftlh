@@ -1,14 +1,22 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-    <form method="post" enctype="multipart/form-data">
-            <label for="">Name</label>
-            <input type="text" name="name" value="${person.name?ifExists}"/>
-            <label for="">Birthday</label>
-            <input type="date" name="birthday" value="${person.birthday?ifExists}">
-            <label for="">Photo</label>
-            <input type="file" name="file">
-            <input type="hidden" name="_csrf" value="${_csrf.token}" />
-            <input type="submit" value="Edit">
+    <div class="container">
+        <form class="form form_person" method="post" enctype="multipart/form-data">
+            <h3 class="form__title">Edit person</h3>
+            <p>
+                <input class="form__input" type="text" name="name" placeholder="Name" value="${person.name?ifExists}"/>
+            </p>
+            <p>
+                <input class="form__input" type="date" name="birthday" placeholder="Birthday" value="${person.birthday?ifExists}"/>
+            </p>
+            <p>
+                <input class="form__input" type="file" name="file"/>
+            </p>
+                <input type="hidden" name="_csrf" value="${_csrf.token}" />
+            <p>
+                <input class="button block-item__btn" type="submit" value="Save"/>
+            </p>
         </form>
+    </div>
 </@c.page>

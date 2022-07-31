@@ -4,7 +4,7 @@
     <#list persons as person>
         <tr>
           <td>
-            <img class="avatar" src="/img/${person.filename}" alt="">
+            <img class="avatar" src="/img/${person.filename?ifExists}" alt="">
           </td>
           <td>
             ${person.name}
