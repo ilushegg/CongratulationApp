@@ -48,4 +48,11 @@ public class UserController {
         return "redirect:/user/settings";
     }
 
+    @GetMapping("profile")
+    public String profileForm(Model model, @AuthenticationPrincipal User user){
+        model.addAttribute("user", user);
+        return "profile";
+    }
+
+
 }

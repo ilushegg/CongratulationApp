@@ -20,7 +20,7 @@
       <#if user??>
           <a href="/user/settings">Settings</a>
       <#else>
-          <a href="/registration">Sign Up</a>
+          <a class="signup_nav" href="/registration">Sign Up</a>
       </#if>
       </li>
       <li class="navbar_item">
