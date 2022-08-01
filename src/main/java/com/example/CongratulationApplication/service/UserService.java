@@ -4,17 +4,17 @@ import com.example.CongratulationApplication.domain.Person;
 import com.example.CongratulationApplication.domain.User;
 import com.example.CongratulationApplication.repos.PersonRepo;
 import com.example.CongratulationApplication.repos.UserRepo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -25,6 +25,9 @@ public class UserService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final MailService mailService;
     private final PersonRepo personRepo;
+
+    @Value("${upload.path}")
+    private String uploadPath;
 
     public Map<User, Map<Boolean, String>> map = new HashMap<>();
 
@@ -107,5 +110,29 @@ public class UserService implements UserDetailsService {
         user.setSendingTime(time);
         user.setAllowSend(allow);
         userRepo.save(user);
+    }
+
+    public void editUser(User user, MultipartFile avatar, String email, String password) throws IOException {
+        saveFile(avatar, user);
+        if(!password.isEmpty()){
+            user.setPassword(passwordEncoder.encode(password));
+        }
+        if(!email.isEmpty()){
+            user.setEmail(email);
+        }
+        userRepo.save(user);
+    }
+    private void saveFile(MultipartFile file, User user) throws IOException {
+        if (file != null && !file.getOriginalFilename().isEmpty()){
+            File uploadDir = new File(uploadPath);
+            if(!uploadDir.exists()){
+                uploadDir.mkdir();
+            }
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+            file.transferTo(new File(uploadPath + "/" + resultFilename));
+            user.setAvatar(resultFilename);
+
+        }
     }
 }

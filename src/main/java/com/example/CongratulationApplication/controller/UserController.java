@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.Multipart;
+import java.io.IOException;
 import java.time.LocalTime;
 
 @Controller
@@ -54,5 +57,11 @@ public class UserController {
         return "profile";
     }
 
+    @PostMapping("profile")
+    public String profileSave(Model model, @AuthenticationPrincipal User user, MultipartFile avatar, @RequestParam String email, @RequestParam String password) throws IOException {
+        userService.editUser(user, avatar, email, password);
+        model.addAttribute("user", user);
+        return "profile";
+    }
 
 }

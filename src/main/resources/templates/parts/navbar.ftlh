@@ -12,7 +12,7 @@
         <a href="/add">Add</a>
       </li>
       <li class="navbar_item">
-        <a href="#">Profile</a>
+        <a href="/user/profile">Profile</a>
       </li>
     </ul>
     <ul class="navbar_section">
