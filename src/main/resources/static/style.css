@@ -300,3 +300,17 @@ table td{
     height: 100%;
     width: 100%;
 }
+
+.user_navbar{
+    max-height: 40px;
+    max-width: 40px;
+    height: 100%;
+    width: 100%;
+
+}
+
+.navbar_avatar{
+    padding: 0px 15px;
+    line-height: 0;
+    list-style: none;
+}

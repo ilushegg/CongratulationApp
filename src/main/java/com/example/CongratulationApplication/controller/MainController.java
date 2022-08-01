@@ -2,6 +2,7 @@ package com.example.CongratulationApplication.controller;
 
 import com.example.CongratulationApplication.domain.User;
 import com.example.CongratulationApplication.repos.PersonRepo;
+import com.example.CongratulationApplication.repos.UserRepo;
 import com.example.CongratulationApplication.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -12,12 +13,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
     private final UserService userService;
 
+
     public MainController(UserService userService){
         this.userService = userService;
     }
 
     @GetMapping()
-    public String main(){
+    public String main(Model model, @AuthenticationPrincipal User user){
+        if(user != null) {
+            model.addAttribute("user", user);
+        }
         return "redirect:/main";
     }
 
