@@ -292,20 +292,27 @@ table td{
 }
 .form_person{
     max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 30px;
+    align-items: center;
+    padding: 30px 0;
 }
 
 .user_avatar{
-    max-height: 300px;
-    max-width: 300px;
-    height: 100%;
-    width: 100%;
+    height: 300px;
+    width: 300px;
+}
+
+.user_avatar:hover{
+    background: url('/img/no_image.png');
+    cursor: pointer;
+    opacity: 0.6;
 }
 
 .user_navbar{
-    max-height: 40px;
-    max-width: 40px;
-    height: 100%;
-    width: 100%;
+    height: 40px;
+    width: 40px;
 
 }
 
@@ -314,3 +321,11 @@ table td{
     line-height: 0;
     list-style: none;
 }
+
+.width{
+    width: 300px;
+}
+
+
+
+
