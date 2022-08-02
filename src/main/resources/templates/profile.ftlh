@@ -2,12 +2,12 @@
 
 <@c.page>
     <div class="container">
-        <form class="form form_person" method="post" enctype="multipart/form-data">
+        <form class="form form_person center" method="post" enctype="multipart/form-data">
             <div>
                 <#if user.avatar??>
                     <img class="avatar user_avatar" id="blah" src="/img/${user.avatar?ifExists}"  onclick='files.click()' alt="">
                 <#else>
-                    <img class="avatar user_avatar" src="/img/no_image.png" onclick='files.click()' alt="">
+                    <img class="avatar user_avatar" id="blah" src="/img/no_image.png" onclick='files.click()' alt="">
                 </#if>
             </div>
             <div>
@@ -23,7 +23,7 @@
                 <input type="hidden" name="_csrf" value="${_csrf.token}" />
             </div>
             <div class="column">
-            <input class="button" type = "submit" value="Save" />
+            <input class="button block-item__btn" type = "submit" value="Save" />
             </div>
         </form>
     <div>
