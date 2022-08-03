@@ -13,7 +13,7 @@
             </div>
 
             <p>
-                <input class="form__input" accept="image/*"  onchange="loadFile(event)" type="file" name="filename" id="files" hidden/>
+                <input class="form__input" accept="image/*"  onchange="loadFile(event)" type="file" name="file" id="files" hidden/>
             </p>
             <p>
                 <input class="form__input" type="text" name="name" placeholder="Name" value="${person.name?ifExists}"/>
