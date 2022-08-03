@@ -6,10 +6,10 @@
           <td>
             <img class="avatar" src="/img/${person.filename?ifExists}" alt="">
           </td>
-          <td>
+          <td class="">
             ${person.name}
           </td>
-          <td>
+          <td class="table_col_text">
             ${(person.birthday).getMonth()} ${(person.birthday).getDayOfMonth()}, ${(person.birthday).getYear()}
           </td>
           <td>
